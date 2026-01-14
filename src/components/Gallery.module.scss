@@ -1,0 +1,55 @@
+.gallery {
+  padding: 80px 0;
+  background: white;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.mainImage {
+  text-align: center;
+  margin-bottom: 30px;
+  
+  .image {
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  padding: 0;
+  
+  &:hover {
+    border-color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  &.active {
+    border-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+}
+
+.thumbnailImage {
+  display: block;
+  border-radius: 5px;
+}
