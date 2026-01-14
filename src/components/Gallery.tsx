@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, TouchEvent } from 'react'
 import Image from 'next/image'
 import styles from './Gallery.module.scss'
 
@@ -14,41 +14,68 @@ const carImages = [
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(0)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      nextImage()
+    }
+    if (touchEndX.current - touchStartX.current > 50) {
+      prevImage()
+    }
+  }
+
+  const nextImage = () => {
+    setSelectedImage((prev) => (prev + 1) % carImages.length)
+  }
+
+  const prevImage = () => {
+    setSelectedImage((prev) => (prev - 1 + carImages.length) % carImages.length)
+  }
 
   return (
-    <section className={styles.gallery}>
-      <div className="container">
-        <h2 className={styles.title}>Galería de Fotos</h2>
+    <div className={styles.gallery}>
+      <div 
+        className={styles.imageCard}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <Image
+          src={carImages[selectedImage]}
+          alt={`Auto foto ${selectedImage + 1}`}
+          width={800}
+          height={600}
+          className={styles.image}
+          priority
+        />
         
-        <div className={styles.mainImage}>
-          <Image
-            src={carImages[selectedImage]}
-            alt={`Auto foto ${selectedImage + 1}`}
-            width={800}
-            height={600}
-            className={styles.image}
-            priority
-          />
-        </div>
+        <button className={styles.navBtn + ' ' + styles.prev} onClick={prevImage}>
+          ‹
+        </button>
+        <button className={styles.navBtn + ' ' + styles.next} onClick={nextImage}>
+          ›
+        </button>
         
-        <div className={styles.thumbnails}>
-          {carImages.map((image, index) => (
+        <div className={styles.indicators}>
+          {carImages.map((_, index) => (
             <button
               key={index}
-              className={`${styles.thumbnail} ${index === selectedImage ? styles.active : ''}`}
+              className={`${styles.indicator} ${index === selectedImage ? styles.active : ''}`}
               onClick={() => setSelectedImage(index)}
-            >
-              <Image
-                src={image}
-                alt={`Miniatura ${index + 1}`}
-                width={120}
-                height={90}
-                className={styles.thumbnailImage}
-              />
-            </button>
+            />
           ))}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
