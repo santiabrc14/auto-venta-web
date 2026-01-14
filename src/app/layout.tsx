@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Auto en Venta - [Marca Modelo]',
-  description: 'Auto en excelente estado, único dueño. Ver detalles y galería de fotos.',
+  title: 'Citroën C4',
+  description: 'Citroën C4 Pack Look 2012 en excelente estado. USD 6500. Services al día, VTV vigente, segundo dueño.',
 }
 
 export default function RootLayout({
