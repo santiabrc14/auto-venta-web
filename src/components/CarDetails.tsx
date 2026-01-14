@@ -10,7 +10,7 @@ const carData = {
   combustible: 'Nafta',
   transmision: 'Manual',
   motor: '1.6 16V',
-  precio: 'USD 6000',
+  precio: 'USD 6500',
   descripcion: 'Funciona todo a la perfección, segundo dueño. Services al día, VTV hasta 2027, Cubiertas nuevas. ',
   caracteristicas: [
     'Dirección asistida',
