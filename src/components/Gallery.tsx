@@ -10,6 +10,10 @@ const carImages = [
   '/images/auto-4.jpg',
   '/images/auto-5.jpg',
   '/images/auto-6.jpg',
+  '/images/auto-7.jpg',
+  '/images/auto-8.jpg',
+  '/images/auto-9.jpg',
+  '/images/auto-10.jpg',
 ]
 
 export default function Gallery() {

@@ -6,7 +6,7 @@ const carData = {
   marca: 'Citröen',
   modelo: 'C4 Pack Look',
   año: 2012,
-  kilometraje: '179000km',
+  kilometraje: '180000km',
   combustible: 'Nafta',
   transmision: 'Manual',
   motor: '1.6 16V',
